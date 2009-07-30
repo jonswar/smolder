@@ -11,7 +11,7 @@ __PACKAGE__->has_a(
     deflate => sub { shift->epoch },
 );
 
-__PACKAGE__->has_many('comments' => 'Smolder::DB::TestFileComment', { order_by => 'added DESC' });
+__PACKAGE__->has_many('comments' => 'Smolder::DB::TestFileComment', {order_by => 'added DESC'});
 
 =head1 NAME
 
@@ -36,6 +36,21 @@ sub is_muted {
     my $mute_until = $self->mute_until;
     my $is_muted = defined($mute_until) && time < $mute_until->epoch;
     return $is_muted;
+}
+
+sub source_path {
+    my ($self) = @_;
+
+    if (my $test_source_root = Smolder::Conf->get('TestSourceRoot')) {
+        my $filename = $self->label;
+        if ($filename =~ /::/) {
+            $filename =~ s/::/\//g;
+            $filename .= ".pm";
+        }
+        return "$test_source_root/$filename";
+    } else {
+        return undef;
+    }
 }
 
 __PACKAGE__->has_a(project => 'Smolder::DB::Project');
