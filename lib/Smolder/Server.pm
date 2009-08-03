@@ -13,6 +13,7 @@ sub new {
     my $server = $class->SUPER::new(@_);
     $server->host(HostName);
     $server->port(Port);
+    $server->pid_file(PidFile);
 
     $server->entry_points(
         {
