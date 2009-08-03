@@ -4,7 +4,7 @@ use warnings;
 use base 'CGI::Application::Server';
 use File::Spec::Functions qw(catdir devnull catfile);
 use File::Path qw(mkpath);
-use Smolder::Conf qw(Port HostName LogFile HtdocsDir DataDir);
+use Smolder::Conf qw(Port HostName LogFile HtdocsDir DataDir PidFile);
 use Smolder::DB;
 
 sub new {
@@ -12,6 +12,7 @@ sub new {
     my $server = $class->SUPER::new(@_);
     $server->host(HostName);
     $server->port(Port);
+    $server->pid_file(PidFile);
 
     $server->entry_points(
         {
