@@ -20,7 +20,6 @@ sub BUILDARGS {
     require Smolder::Server;
 
     my $server = Smolder::Server->new();
-    $server->{__smolder_daemon} = 1;    # like passing --daemon, ugh
 
     return $class->SUPER::BUILDARGS(
         description => "smolder ($config_dir)",
@@ -30,13 +29,6 @@ sub BUILDARGS {
         port        => Smolder::Conf->get('Port'),
         %params
     );
-}
-
-sub do_start {
-    my $self = shift;
-
-    # Run Smolder::Server::start(), instead of the default background()
-    my $pid = $self->server->start();
 }
 
 1;
