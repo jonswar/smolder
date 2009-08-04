@@ -16,11 +16,11 @@ sub new {
 
     $server->entry_points(
         {
-            '/'    => 'Smolder::Redirect',
-            '/app' => 'Smolder::Dispatch',
-            '/js'     => HtdocsDir,
-            '/style'  => HtdocsDir,
-            '/images' => HtdocsDir,
+            '/'           => 'Smolder::Redirect',
+            '/app'        => 'Smolder::Dispatch',
+            '/js'         => HtdocsDir,
+            '/style'      => HtdocsDir,
+            '/images'     => HtdocsDir,
             '/robots.txt' => HtdocsDir,
         },
     );
@@ -39,9 +39,9 @@ sub print_banner {
 sub start {
     my $self = shift;
 
-	if (not -e DataDir) {
-		mkpath(DataDir) or die sprintf("Could not create %s: $!", DataDir);
-	}
+    if (not -e DataDir) {
+        mkpath(DataDir) or die sprintf("Could not create %s: $!", DataDir);
+    }
 
     unless (-e Smolder::DB->db_file) {
 
@@ -71,7 +71,7 @@ sub start {
     require Smolder::Redirect;
 
     my @net_server_args = (pid_file => PidFile);
-    if( $self->{__smolder_daemon} ) {
+    if ($self->{__smolder_daemon}) {
         return $self->background(@net_server_args);
     } else {
         return $self->run(@net_server_args);
