@@ -1,5 +1,5 @@
 package Smolder::Server::PreFork;
-use Smolder::Conf qw(PidFile LogFile DataDir);
+use Smolder::Conf qw(PidFile LogFile DataDir User Group);
 use strict;
 use warnings;
 use base qw(Net::Server::PreFork);
@@ -16,6 +16,10 @@ sub configure_hook {
 
     # Ensure that we fork
     $prop->{background} = 1;
+
+    # Assign user and group if given
+    $prop->{user} = User if defined(User);
+    $prop->{group} = Group if defined(Group);
 
     # Create data dir if needed
     if (not -e DataDir) {
