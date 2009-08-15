@@ -44,7 +44,7 @@ BEGIN {
         SQLDir                => catdir($share_dir, 'sql'),
         Secret                => _random_secret(),
         TemplateDir           => catdir($share_dir, 'templates'),
-        TestSourceRoot        => undef,
+        TestFileSourceLink    => undef,
         TruncateTestFilenames => 0,
         User                  => undef,
     );
