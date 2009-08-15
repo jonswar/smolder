@@ -38,16 +38,16 @@ sub is_muted {
     return $is_muted;
 }
 
-sub source_path {
+sub source_link {
     my ($self) = @_;
 
-    if (my $test_source_root = Smolder::Conf->get('TestSourceRoot')) {
+    if (my $test_file_source_link = Smolder::Conf->get('TestFileSourceLink')) {
         my $filename = $self->label;
         if ($filename =~ /::/) {
             $filename =~ s/::/\//g;
             $filename .= ".pm";
         }
-        return "$test_source_root/$filename";
+        return sprintf($test_file_source_link, $filename);
     } else {
         return undef;
     }

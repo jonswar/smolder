@@ -741,25 +741,4 @@ sub test_file_history {
     return $self->tt_process('Developer/Projects/test_file_history.tmpl', $tt_params);
 }
 
-sub test_file_source {
-    my $self         = shift;
-    eval { require Perl::Tidy };
-    my $query        = $self->query;
-    my $test_file_id = $self->param('id');
-    my $test_file    = Smolder::DB::TestFile->retrieve($test_file_id);
-    if (my $source_path = $test_file->source_path()) {
-        if (-f $source_path) {
-            my $output;
-            if (Perl::Tidy->can('perltidy')) {
-                Perl::Tidy::perltidy( argv => "-html", source => $source_path, destination => \$output );
-            }
-            else {
-                $output = read_file($source_path);
-            }
-            return $output;
-        }
-    }
-    return $self->error_message("cannot view test source for '" . $test_file->label . "'");
-}
-
 1;

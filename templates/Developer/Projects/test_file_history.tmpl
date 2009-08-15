@@ -14,8 +14,8 @@
 
 [% PROCESS Shared/test_file_actions.tmpl %]
 
-[% IF test_file.source_path %]
-<a target="_view_source" href="[% app_prefix %]/test_file_source/[% test_file.id %]">View source</a>
+[% IF test_file.source_link %]
+<a target="_view_source" href="[% test_file.source_link %]">View source</a>
 [% END %]
 
 </div>
