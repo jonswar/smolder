@@ -11,5 +11,5 @@ if ( !defined($config_file) ) {
     die "usage: $0 -f config_file [-v] start|stop|restart|ping";
 }
 
-my $ctl = Smolder::Server::Control->new(config_file => $config_file);
+my $ctl = Smolder::Server::Control->new_from_config($config_file);
 $ctl->handle_cmdline(verbose => $verbose);
