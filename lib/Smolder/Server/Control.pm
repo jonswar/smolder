@@ -6,14 +6,13 @@ use Smolder::Conf;
 use strict;
 use warnings;
 
-extends 'Server::Control::Simple';
+extends 'Server::Control::HTTPServerSimple';
 
 __PACKAGE__->meta->make_immutable();
 
-sub BUILDARGS {
-    my $class = shift;
-    my %params = @_;
-    my $config_file = delete($params{config_file}) or die "must specify config_file";
+sub new_from_config {
+    my ($class, $config_file) = @_;
+    die "must specify config_file" unless defined($config_file);
     my $config_dir = dirname($config_file);
     
     Smolder::Conf->init_from_file($config_file);
@@ -21,13 +20,16 @@ sub BUILDARGS {
 
     my $server = Smolder::Server->new();
 
-    return $class->SUPER::BUILDARGS(
-        description => "smolder ($config_dir)",
-        server      => $server,
-        pid_file    => Smolder::Conf->get('PidFile'),
-        error_log   => Smolder::Conf->get('LogFile'),
-        port        => Smolder::Conf->get('Port'),
-        %params
+    return $class->new(
+        server_class => 'Smolder::Server',
+        net_server_params => {
+            pid_file   => Smolder::Conf->get('PidFile'),
+            log_file   => Smolder::Conf->get('LogFile'),
+            port       => Smolder::Conf->get('Port'),
+            user       => Smolder::Conf->get('User'),
+            group      => Smolder::Conf->get('Group'),
+        },
+        description => "smolder ($config_dir)"
     );
 }
 
