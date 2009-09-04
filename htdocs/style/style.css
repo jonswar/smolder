@@ -725,6 +725,26 @@ a.testfile_details_trigger.fail {
     text-decoration: underline;
 }
 
+.tap a.history_link {
+    font-size: 0.85em;
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+    height: 1.5em;
+}
+
+.tap a.full_report_link {
+    font-size: 0.85em;
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+    height: 1.5em;
+}
+
+.tap a.history_label:hover {
+    text-decoration: underline;
+}
+
 .tap .exp {
 	display: block;
 }
@@ -742,7 +762,7 @@ a.testfile_details_trigger.fail {
 .tap .nottest { background-color: #7f7f7f; color: #000; }
 .tap span.fail { background-color: transparent; color: #cc0033 }
 
-.tap .filename { color: #000; }
+.tap .filename { color: #000 }
 
 ul.subtests 			{ margin: 0px 0px 20px 35px; padding: 0px; list-style-type: none; }
 ul.subtests li 			{ margin: 3px; }
