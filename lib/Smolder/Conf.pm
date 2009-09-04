@@ -24,7 +24,7 @@ BEGIN {
     if (-d $blib_share_dir) {
         $share_dir = $blib_share_dir;
     } else {
-        $share_dir = dist_dir('Smolder');
+        $share_dir = eval { dist_dir('Smolder') } || '/etc/smolder';
     }
 
     %VALUES = (

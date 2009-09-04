@@ -98,6 +98,7 @@
       <th>Results</th>
       <th>Count</th>
       <th>%</th>
+      <th></th>
     </tr>
   </thead>
   [%- SET found_first_failure = 0 -%]
@@ -112,7 +113,7 @@
         </span>
         [%- IF !found_first_failure && test.failed %]<a name="first_failure"></a>[% found_first_failure = 1 -%]
         [%- END -%]
-        <a class="testfile_label" href="[% url_prefix %][% app_prefix %]/test_file_history/[% project.id %]/[% test.test_file %]">
+        [% INCLUDE Shared/test_file_report_details_anchor.tmpl testfile_label=1 %]
         <span class="filename[% IF test.failed %] fail[% END %]">
              [% test.label | html %]
            [% IF test.is_muted %] (muted until [% test.mute_until %]) [% END %]
@@ -131,9 +132,10 @@
          [% test.percent %]%
         </a>
       </td>
+      <td width=5%>[<a class="history_link" href="[% url_prefix %][% app_prefix %]/test_file_history/[% project.id %]/[% test.test_file %]">History</a>]</td>
     </tr>
     <tr>
-      <td colspan="6">
+      <td colspan="7">
         <div id="testfile_details_[% test.file_index %]" class="testfile_details" style="display:none"></div>
         <div id="testfile_details_[% test.file_index %]_tap_stream" class="testfile_tap_stream" style="display:none; text-align: right">
           <a href="[% url_prefix %][% app_prefix %]/tap_stream/[% report.id %]/[% test.file_index %]" target="_blank">TAP &#187;</a>
@@ -151,7 +153,7 @@
       <td class="sum">[% report.total_percentage %]%</td>
     </tr>
     <tr>
-      <td colspan="6" class="last">
+      <td colspan="7" class="last">
           [% report.pass      | format_number %] ok, 
           [% report.fail      | format_number %] failed, 
           [% report.todo      | format_number %] todo, 
