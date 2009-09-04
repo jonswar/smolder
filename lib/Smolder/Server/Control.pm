@@ -1,6 +1,5 @@
 package Smolder::Server::Control;
 use File::Basename;
-use File::Slurp;
 use Moose;
 use Smolder::Conf;
 use strict;
