@@ -371,7 +371,7 @@ sub report_details {
     my $self   = shift;
     my $report = Smolder::DB::SmokeReport->retrieve($self->param('id'));
 
-    if (Smolder::Conf->get('AutoRefreshReports')) {
+    if (Smolder::Conf->get('AutoRefreshReports') || $self->query->param('refresh')) {
         $report->update_from_tap_archive();
     }
 
