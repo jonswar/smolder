@@ -768,9 +768,9 @@ ul.subtests 			{ margin: 0px 0px 20px 35px; padding: 0px; list-style-type: none;
 ul.subtests li 			{ margin: 3px; }
 ul.subtests li pre		{ margin: 0px; }
 .subtests li.fail 		{ background-color: white; color: #cc0033; }
-.subtests li.ok 		{ background-color: white; color: black; opacity: 0.6; }
-.subtests li.skip 		{ background-color: white; color: black; opacity: 0.6; font-style: italic; }
-.subtests li.todo_ok 	{ background-color: white; color: #ffdd20; }
+.subtests li.ok 		{ background-color: white; color: black; opacity: 0.6; display: none}
+.subtests li.skip 		{ background-color: white; color: black; opacity: 0.6; font-style: italic; display: none}
+.subtests li.todo_ok 	{ background-color: white; color: #ffdd20; display: none}
 .subtests li.todo 		{ background-color: white; color: #007f00; }
 .subtests li.nottest 	{ background-color: white; color: #7f7f7f; }
 

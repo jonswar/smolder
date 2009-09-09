@@ -941,6 +941,12 @@ var myrules = {
 	    $$('tbody.results.passed').invoke('toggle');
         };
     },
+    'a.toggle_all_lines' : function(el) {
+    	el.onclick = function() {
+            $$('a.toggle_all_lines span.hide', 'a.toggle_all_lines span.show').invoke('toggle');
+	    $$('li ok').invoke('toggle');
+        };
+    },
     '.tap a.show_all' : function(el) {
         Event.observe(el, 'click', function() {
             // an anonymous function that we use as a callback after each

@@ -1,4 +1,8 @@
+[% SET id = report.id %]
 [%- IF tests.size -%]
+<div class="controls">
+  <a href="#" class="toggle_all_lines"><span class="show">Show All Lines</span><span class="hide" style="display: none">Show Only Errors</span></a>
+</div>
   <ul summary="subtests" class="subtests">
   [%- FOREACH test IN tests -%]
     [%- IF test.skip  %] [% SET css_class = 'skip' -%]
