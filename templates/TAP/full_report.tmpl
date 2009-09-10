@@ -73,9 +73,10 @@
 <div class="controls">
 <b>View controls:</b>&nbsp;
   [%- IF report.failed -%]
-    <a href="#" class="toggle_all_tests"><span class="show">Show All Tests</span><span class="hide" style="display: none">Show Only Failures</span></a> &nbsp;&middot;&nbsp;
+    <span class="showAllTests"><a href="#" id="showAllTests" class="toggle_all_tests">Show All Tests</a></span><span id="hideAllTestsSpan" class="hideAllTests" style="display: none"><a href="#" id="hideAllTests" class="toggle_all_tests">Show Only Failed Tests</a></span> &nbsp;&middot;&nbsp;
+    <span id="showAllLines" style="display: inline"><a href="#" onClick="showAllLines()">Show All Lines</a></span><span id="hideAllLines" style="display: none"><a href="#" onClick="hideAllLines()">Show Only Error Lines</a></span> &nbsp;&middot;&nbsp;
   [%- END -%]
-  <a href="#" class="show_all">Show All Details</a>
+  <a href="#" class="show_all">Show Everything</a>
 </div>
 
 <form method=GET action="[% app_prefix %]/bulk_test_file_action/[% project.id %]">
@@ -137,9 +138,6 @@
     <tr>
       <td colspan="7">
         <div id="testfile_details_[% test.file_index %]" class="testfile_details" style="display:none"></div>
-        <div id="testfile_details_[% test.file_index %]_tap_stream" class="testfile_tap_stream" style="display:none; text-align: right">
-          <a href="[% url_prefix %][% app_prefix %]/tap_stream/[% report.id %]/[% test.file_index %]" target="_blank">TAP &#187;</a>
-        </div>
       </td>
     </tr>
   </tbody>

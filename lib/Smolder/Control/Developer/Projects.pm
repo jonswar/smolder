@@ -404,6 +404,7 @@ sub test_file_report_details {
     my $report = Smolder::DB::SmokeReport->retrieve($self->param('id'));
     return $self->error_message('Test Report does not exist')
       unless $report;
+
     my $num = $self->param('type') || 0;
 
     # make sure ths developer is a member of this project
