@@ -60,7 +60,6 @@ sub setup {
               tap_archive
               tap_stream
               bulk_test_file_action
-              test_file_history
               )
         ]
     );
@@ -332,7 +331,7 @@ sub smoke_reports {
     return $self->error_message('Project does not exist')
       unless $project;
 
-    # make sure ths developer is a member of this project
+    # make sure the developer is a member of this project
     unless ($project->public || $project->has_developer($self->developer)) {
         return $self->error_message('Unauthorized for this project');
     }
@@ -672,7 +671,8 @@ sub bulk_test_file_action {
     if ($action eq 'mute') {
         my $num_days = $query->param('num_days');
         die "could not find num_days" if !defined($num_days);
-        my $mute_until_time = DateTime->now(time_zone => 'local')->add(days => $num_days)->truncate(to => 'day')->epoch;
+        my $mute_until_time =
+          DateTime->now(time_zone => 'local')->add(days => $num_days)->truncate(to => 'day')->epoch;
         foreach my $testfile (@testfiles) {
             $testfile->mute_until($mute_until_time);
             $testfile->update;
