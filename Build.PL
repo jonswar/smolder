@@ -42,6 +42,7 @@ my $builder = Smolder::Build->new(
         'GD::Graph'                                  => 0,
         'GD::Graph3d'                                => 0,
         'GD::Text'                                   => 0,
+        'Hash::MoreUtils'                            => 0,
         'HTML::FillInForm'                           => 2.00,
         'HTML::FormatText::WithLinks'                => 0,
         'HTML::TagCloud'                             => 0.34,
