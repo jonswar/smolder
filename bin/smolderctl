@@ -1,15 +1,21 @@
-#!/usr/bin/perl
-use Getopt::Long;
-use Smolder::Server::Control;
-use warnings;
+#!/usr/bin/perl -w
 use strict;
+use Smolder::Server::Control;
 
-my ( $config_file, $verbose );
-GetOptions( 'f=s' => \$config_file, 'v|verbose' => \$verbose );
+Smolder::Server::Control->handle_cli();
 
-if ( !defined($config_file) ) {
-    die "usage: $0 -f config_file [-v] start|stop|restart|ping";
-}
+__END__
 
-my $ctl = Smolder::Server::Control->new_from_config($config_file);
-$ctl->handle_cmdline(verbose => $verbose);
+=head1 NAME
+
+serverctl - script for controlling Smolder ala apachectl
+
+=head1 SYNOPSIS
+
+   serverctl [-f conf_file] [-v] [-q] -k start|stop|restart|ping
+
+=head1 AUTHOR
+
+Jonathan Swartz
+
+=cut
