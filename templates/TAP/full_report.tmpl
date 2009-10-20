@@ -2,6 +2,7 @@
 [%- SET app_prefix = project.app_prefix -%]
 [%- USE Number.Format -%]
 [%- odd_even.reset() -%]
+
 <table class="properties boxed">
 <thead>
   <tr><th colspan="2">Properties</th></tr>
@@ -112,12 +113,12 @@
         </span>
         [%- IF !found_first_failure && test.failed %]<a name="first_failure"></a>[% found_first_failure = 1 -%]
         [%- END -%]
-        <a class="testfile_label" href="[% url_prefix %][% app_prefix %]/test_file_history/[% project.id %]/[% test.test_file %]">
         <span class="filename[% IF test.failed %] fail[% END %]">
+            <a class="testfile_label" href="[% url_prefix %][% app_prefix %]/test_file_history/[% project.id %]/[% test.test_file %]">
              [% test.label | html %]
+            </a>
            [% IF test.is_muted %] (muted until [% test.mute_until %]) [% END %]
         </span>
-        </a>
       </td>
       <td class="x sum" style="margin: 0px; padding: 0px; [% IF test.all_skipped %]background-color: #FFFD50; color: black">SKIPPED[% ELSIF test.failed %]background-color: #CC0033; color: white">FAILED[% ELSE %]background-color: #00FF00; color: black">OK[% END %]
       </td>
