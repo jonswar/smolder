@@ -1,3 +1,4 @@
+[% SET id = report.id %]
 [%- IF tests.size -%]
   <ul summary="subtests" class="subtests">
   [%- FOREACH test IN tests -%]
@@ -5,7 +6,7 @@
     [%- ELSIF test.ok %] [% SET css_class = test.todo ? 'todo_ok' : 'ok' -%]
     [%- ELSE          %] [% SET css_class = test.todo ? 'todo'    : 'fail' -%]
     [%- END -%]
-    <li class="[% css_class %]">
+    <li name="[% css_class %]_test" class="[% css_class %]">
          [% test.comment | html %]
          [% IF test.unknown %]<pre class="unknown">[% test.unknown %]</pre>[%- END -%]
     </li>

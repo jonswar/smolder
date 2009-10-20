@@ -1,5 +1,33 @@
 var Smolder = {};
 
+// Old school javascript for effect that I can't get to work with behaviors
+function showAllLines()
+{
+  var lines=document.getElementsByName("ok_test");
+  for (i=0;i<lines.length;i++) {
+    lines[i].style.display = "block";
+  }
+  document.getElementById("showAllLines").style.display = "none";
+  document.getElementById("hideAllLines").style.display = "inline";
+  return false;
+}
+function hideAllLines()
+{
+  var lines=document.getElementsByName("ok_test");
+  for (i=0;i<lines.length;i++) {
+    lines[i].style.display = "none";
+  }
+  document.getElementById("showAllLines").style.display = "inline";
+  document.getElementById("hideAllLines").style.display = "none";
+  return false;
+}
+function redisplayAllLines()
+{
+    if (document.getElementById("hideAllLines").style.display == "inline") {
+        showAllLines();
+    }
+}
+
 Smolder.load = function(target, json) {
     if(! json) json = {};
     // update the navigation if we need to
@@ -902,7 +930,6 @@ var myrules = {
 
         el.onclick = function() {
             if( Element.visible(target) ) {
-                $(target + '_tap_stream').hide();
                 Effect.BlindUp(target, { duration: .1 });
             } else {
                 $(indicator).style.visibility = 'visible';
@@ -917,11 +944,11 @@ var myrules = {
                             // reapply any dynamic bits
                             { 
                                 afterFinish : function() { 
-                                    $(target + '_tap_stream').show();
                                     $$('.tooltip_trigger').each(function(el) {
                                         var diag = $(el).select('.tooltip')[0];
                                         Smolder.setup_tooltip(el, diag);
                                     });
+                                    redisplayAllLines();
                                 },
                                 duration    : .1
                             }
@@ -937,7 +964,7 @@ var myrules = {
     },
     '.tap a.toggle_all_tests' : function(el) {
     	el.onclick = function() {
-            $$('a.toggle_all_tests span.hide', 'a.toggle_all_tests span.show').invoke('toggle');
+            $$('span.hideAllTests', 'span.showAllTests').invoke('toggle');
 	    $$('tbody.results.passed').invoke('toggle');
         };
     },
@@ -950,6 +977,7 @@ var myrules = {
                 // apply the behaviours if we're the last one
                 if( ! el ) {
                     Behaviour.apply();
+                    showAllLines();
                     return;
                 } 
 
@@ -975,6 +1003,9 @@ var myrules = {
                     });
                 }
             };
+            if (document.getElementById("hideAllTestsSpan").style.display == "none") {
+                document.getElementById("showAllTests").onclick();
+            }
             show_details(0);
         });
     }

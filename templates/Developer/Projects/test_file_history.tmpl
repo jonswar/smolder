@@ -31,6 +31,7 @@
       <th>Results</th>
       <th>Count</th>
       <th>%</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -42,7 +43,7 @@
         <span style="float: right">
           <img src="[% url_prefix %]/images/indicator.gif" style="visibility:hidden; border: none" id="indicator_[% test.file_index %]" />
         </span>
-        <a class="testfile_label" href="[% url_prefix %][% app_prefix %]/report_details/[% report.id %]">
+        [% INCLUDE Shared/test_file_report_details_anchor.tmpl %]
         <span class="filename[% IF test.failed %] fail[% END %]">
           [% report.added.strftime('%a %b %d %l:%M %p') %] [% IF report.architecture %][% "- " _ report.architecture %][% END %][% IF report.platform %][% "- " _ report.platform %][% END %]
         </span>
@@ -61,6 +62,7 @@
          [% test.percent %]%
         </a>
       </td>
+      <td width=5%>[<a class="full_report_link" href="[% url_prefix %][% app_prefix %]/report_details/[% report.id %]">Report</a>]</td>
     </tr>
     <tr>
       <td colspan="5">

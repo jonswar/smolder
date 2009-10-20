@@ -1,3 +1,4 @@
+*~
 *.bak
 *.swo
 *.swp
@@ -11,3 +12,4 @@ logs/*
 notes
 smolder.conf
 z-backup
+META.yml
